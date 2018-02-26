@@ -25,8 +25,20 @@ class PagesController < ApplicationController
     end
   end
 
+def edit
+  @page = Page.find(params[:id])
+end
+
   private
     def page_params
       params.require(:page).permit(:body, :author, :title)
     end
+end
+
+def update
+  @page = Page.find(params[:id])
+    redirect_to page_path(@page)
+  else
+    render :edit
+  end
 end
